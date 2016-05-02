@@ -16,4 +16,5 @@ Demo of integrating JsForce with Salesforce instance, and then deploying into Sa
 
 ## Design Considerations:
 1. Encapulate all code into one file to simplify SalesForce page/component management
+2. SoqlExplorer (for OSX) is a great tool for exploring available Tables / Data and test SOQL 
 
