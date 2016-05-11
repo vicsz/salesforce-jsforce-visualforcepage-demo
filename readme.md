@@ -4,7 +4,7 @@ Demo of integrating JsForce with Salesforce instance, and then deploying into Sa
 ## Development Steps:
 1. Local Dev Setup
   1. Replace Username, Password, and SecurityToken with correct values
-  2. Locally testing will require Cross Orgin calls -- Safari will allow this for local files, Chrome will not
+  2. Locally testing will require Cross Orgin calls -- this will require configuring your browser accordingly
   3. Ensure that your account has access to corresponding tables via SOQL
 2. Edit local with different SOQL calls, and different charts 
 3. Deploy to Salesforce VisualForce Pages.

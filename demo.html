@@ -17,28 +17,42 @@
         // ========== END LOCAL CODE =======================================
 
         function drawTable(){
-          conn.query("SELECT Full_Name__c, MobilePhone, Company_Name__c FROM Contact LIMIT 100", function(err, res) {
-            
-              var queryData = res.records.map(function(record) {
-                return [
-                  record.Full_Name__c,
-                  record.MobilePhone,
-                  record.Company_Name__c
-                ];
-              });
+
+          var records = [];
+          
+          conn.query("SELECT Name, MobilePhone, Email FROM Contact ORDER BY Name LIMIT 1000")
+          .on("record", function(record) {
+
+            records.push([
+              record.Name,
+              record.MobilePhone,
+              record.Email
+            ]);
+
+          })
+          .on("error", function(err) {
+
+            console.error(err);
+
+          })
+          .on("end", function() {
 
             google.charts.load('current', {'packages':['table']});
             google.charts.setOnLoadCallback(function(){
               var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Name');
                 data.addColumn('string', 'Phone');
-                data.addColumn('string', 'Company Name');
-                data.addRows(queryData);
+                data.addColumn('string', 'Email');
+                data.addRows(records);
 
               var table = new google.visualization.Table(document.getElementById('table_div'));
               table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
             });
-          })};
+
+          }) 
+          .run({ autoFetch : true, maxFetch : 10000 }); 
+     
+        };
 
     </script>
     
